@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "agyenvoy": {
+      "command": "node",
+      "args": ["/absolute/path/to/agyenvoy/server.mjs"],
+      "env": {
+        "AGY_BIN": "/absolute/path/to/agy"
+      }
+    }
+  }
+}

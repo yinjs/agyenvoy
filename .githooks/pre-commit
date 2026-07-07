@@ -1,0 +1,26 @@
+#!/bin/sh
+# Lint + format check, and block commits that change src/ (or deps) without
+# regenerating server.mjs.
+# Enable once per clone: git config core.hooksPath .githooks
+
+if [ -x node_modules/.bin/oxlint ]; then
+  node_modules/.bin/oxlint || exit 1
+fi
+if [ -x node_modules/.bin/oxfmt ]; then
+  node_modules/.bin/oxfmt --check || {
+    echo "pre-commit: formatting issues — run: npm run fmt" >&2
+    exit 1
+  }
+fi
+
+if git diff --cached --name-only | grep -qE '^(src/|package\.json|pnpm-lock\.yaml)'; then
+  if [ ! -x node_modules/.bin/esbuild ]; then
+    echo "pre-commit: esbuild not installed; skipping bundle-freshness check (run npm install to enable)" >&2
+    exit 0
+  fi
+  npm run --silent bundle
+  if ! git diff --quiet -- server.mjs; then
+    echo "pre-commit: server.mjs was stale — rebuilt it. Run: git add server.mjs && retry commit" >&2
+    exit 1
+  fi
+fi

@@ -1,0 +1,16 @@
+{
+  "name": "agyenvoy",
+  "displayName": "agyenvoy — delegate to agy (Antigravity/Gemini)",
+  "version": "1.0.0",
+  "description": "Let one agent dispatch the agy CLI (Antigravity, Gemini-backed): ask a model, continue/resume conversations, list models, check auth/credit, log in, and generate images via agy's native model.",
+  "author": { "name": "yinjiangsheng", "email": "yinjiangsheng@gmail.com" },
+  "keywords": ["mcp", "agyenvoy", "agy", "antigravity", "gemini", "llm", "image-generation"],
+  "license": "MIT",
+  "mcpServers": {
+    "agyenvoy": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server.mjs"]
+    }
+  },
+  "skills": "./skills/"
+}

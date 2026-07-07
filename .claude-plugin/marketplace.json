@@ -1,0 +1,14 @@
+{
+  "name": "agyenvoy",
+  "owner": { "name": "yinjiangsheng", "email": "yinjiangsheng@gmail.com" },
+  "description": "agy (Antigravity/Gemini) MCP plugin",
+  "plugins": [
+    {
+      "name": "agyenvoy",
+      "source": ".",
+      "description": "Delegate prompts to the agy CLI: ask a model, continue conversations, list models, generate images.",
+      "version": "1.0.0",
+      "author": { "name": "yinjiangsheng" }
+    }
+  ]
+}
